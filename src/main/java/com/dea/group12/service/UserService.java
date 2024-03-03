@@ -1,9 +1,8 @@
-package com.example.demo.service;
+package com.dea.group12.service;
 
-import com.example.demo.model.User;
+import com.dea.group12.model.User;
 
 import java.util.List;
-import java.util.Optional;
 
 public interface UserService {
     User save(User user);

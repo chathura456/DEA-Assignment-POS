@@ -1,9 +1,8 @@
-package com.example.demo.controller;
-import com.example.demo.model.LoginRequest;
-import com.example.demo.model.User;
-import com.example.demo.service.UserService;
+package com.dea.group12.controller;
+import com.dea.group12.model.LoginRequest;
+import com.dea.group12.service.UserService;
+import com.dea.group12.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
