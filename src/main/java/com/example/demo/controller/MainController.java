@@ -1,8 +1,12 @@
 package com.example.demo.controller;
+import com.example.demo.model.LoginRequest;
 import com.example.demo.model.User;
 import com.example.demo.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/api")
@@ -18,5 +22,31 @@ public class MainController {
     @GetMapping("/test")
     public String testConnection() {
         return "Connection OK!";
+    }
+
+    @GetMapping("/all") // New endpoint to get all users
+    public List<User> getAllUsers() {
+        return userService.findAllUsers();
+    }
+
+    @PutMapping("/users/{id}")
+    public User updateUser(@PathVariable int id, @RequestBody User user) {
+        user.setId(id);
+        return userService.updateUser(user);
+    }
+
+    @DeleteMapping("/users/{id}")
+    public void deleteUser(@PathVariable int id) {
+        userService.deleteUser(id);
+    }
+
+    @PostMapping("/login")
+    public String login(@RequestBody LoginRequest loginDTO) {
+        User user = userService.findByEmail(loginDTO.getEmail());
+        if (user != null && user.getPassword().equals(loginDTO.getPassword())) {
+            return "Login successful";
+        } else {
+            return "Invalid credentials";
+        }
     }
 }
